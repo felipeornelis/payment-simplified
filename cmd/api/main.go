@@ -20,14 +20,14 @@ func main() {
 	createAccountInteractor := interactors.NewCreateAccountInteractor(accountRepository)
 	createAccountHandler := handlers.NewCreateAccountHandler(createAccountInteractor)
 	listAccountsInteractor := interactors.NewListAccountsInteractor(accountRepository)
-	listAccountsHandle := handlers.NewListAccountsHandler(listAccountsInteractor)
+	listAccountsHandler := handlers.NewListAccountsHandler(listAccountsInteractor)
 
 	transactionRepository := txpersistence.NewTransactionRepository()
 	createTransactionInteractor := txinteractors.NewCreateTransactionInteractor(transactionRepository, accountRepository)
 	createTransactionHandler := txhandlers.NewCreateTransactionHandler(createTransactionInteractor)
 
 	r.Post("/accounts", createAccountHandler.Handle)
-	r.Get("/accounts", listAccountsHandle.Handle)
+	r.Get("/accounts", listAccountsHandler.Handle)
 	r.Post("/transfer", createTransactionHandler.Handle)
 
 	http.ListenAndServe(":8080", r)

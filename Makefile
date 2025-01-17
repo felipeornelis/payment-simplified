@@ -1,5 +1,5 @@
 # Server
-BINARY_NAME=server
+BINARY_NAME=api
 BUILD_PATH=./cmd/api
 MAIN_FILE=$(BUILD_PATH)/main.go
 
